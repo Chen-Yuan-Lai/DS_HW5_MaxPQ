@@ -48,3 +48,15 @@ void BST<K, E>::Push(const pair<K, E> &x)
     else
         root = p;
 }
+
+template <class K, class E>
+void BST<K, E>::Pop()
+{
+    if (IsEmpty())
+        throw "the tree is empty";
+    TreeNode *p;
+    while (p)
+    {
+        if ()
+    }
+}
