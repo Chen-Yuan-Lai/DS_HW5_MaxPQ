@@ -1,5 +1,5 @@
-#ifndef BST_H
-#define BST_H
+#ifndef MAXPQ_H
+#define MAXPQ_H
 #include <utility>
 using namespace std;
 template <class K, class E>
@@ -11,7 +11,7 @@ public:
     // return true iff the prioity queue is empty
     virtual bool IsEmpty() const = 0;
     // return reference to max element
-    // virtual const pair<K, E> *Top() const = 0;
+    virtual const pair<K, E> *Top() const = 0;
     // add an element to the prioity queue
     virtual void Push(const pair<K, E> &) = 0;
     // delete element with max priority
@@ -26,6 +26,7 @@ class BST : public MaxPQ<K, E>
 public:
     BST(TreeNode *init = 0) { root = init; }
     ~BST();
+    const pair<K, E> *Top() const;
     void removeSubtree(TreeNode *Ptr);
     bool IsEmpty() const { return root == 0; }
     void Push(const pair<K, E> &x);

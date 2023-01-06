@@ -1,15 +1,18 @@
 #include <iostream>
-#include "BST.h"
+#include "MaxPQ.h"
 using namespace std;
 
 template <class K, class E>
 void BST<K, E>::removeSubtree(TreeNode *Ptr)
 {
-    if (!Ptr->leftChild)
-        removeSubtree(Ptr->leftChild);
-    if (!Ptr->rightChild)
-        removeSubtree(Ptr->rightChild);
-    delete Ptr;
+    if (Ptr)
+    {
+        if (Ptr->leftChild)
+            removeSubtree(Ptr->leftChild);
+        if (Ptr->rightChild)
+            removeSubtree(Ptr->rightChild);
+        delete Ptr;
+    }
 }
 
 template <class K, class E>
@@ -54,9 +57,28 @@ void BST<K, E>::Pop()
 {
     if (IsEmpty())
         throw "the tree is empty";
-    TreeNode *p;
-    while (p)
+    TreeNode *p = root, *pp = 0;
+    while (p->rightChild)
     {
-        if ()
+        pp = p;
+        p = p->rightChild;
     }
+    if (p == root)
+        root = p->leftChild;
+    else
+        pp->rightChild = p->leftChild;
+    delete p;
+}
+
+template <class K, class E>
+const pair<K, E> *BST<K, E>::Top() const
+{
+    if (IsEmpty())
+        throw "the tree is empty";
+    TreeNode *p = root;
+    while (p->rightChild)
+    {
+        p = p->rightChild;
+    }
+    return &p->data;
 }
